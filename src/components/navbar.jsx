@@ -53,7 +53,8 @@ export default function Navigation() {
 function NavLinks() {
   const links = [
     { href: "#", label: "Home" },
-    { href: "dashboard", label: "Dashboard" },
+    { href: "/dashboard", label: "Dashboard" },
+    { href: "/https://react-grid-layout-drag-drop.vercel.app/", label: "Dashboard" },
     { href: "#", label: "Services" },
     { href: "#", label: "Contact" },
     { href: "/", label: "About" },
