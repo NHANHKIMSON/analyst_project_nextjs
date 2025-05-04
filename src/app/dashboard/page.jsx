@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/sidebar"
 
 import data from "./data.json"
+import { Card } from "iconsax-reactjs"
 
 export default function Page() {
   return (
@@ -30,6 +31,7 @@ export default function Page() {
                 <ChartAreaInteractive />
               </div>
               <DataTable data={data} />
+              
             </div>
           </div>
         </div>
