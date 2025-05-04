@@ -52,12 +52,12 @@ export default function Navigation() {
 
 function NavLinks() {
   const links = [
-    { href: "#", label: "Home" },
+    { href: "/booking/home", label: "Home" },
     { href: "/dashboard", label: "Dashboard" },
-    { href: "/https://react-grid-layout-drag-drop.vercel.app/", label: "Dashboard" },
-    { href: "#", label: "Services" },
-    { href: "#", label: "Contact" },
-    { href: "/", label: "About" },
+    { href: "/booking/zone", label: "Zone Layout" },
+    { href: "/booking/home", label: "Services" },
+    { href: "booking/home", label: "Contact" },
+    { href: "/booking/about", label: "About" },
   ];
 
   return links.map(({ href, label }) => (
