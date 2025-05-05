@@ -18,19 +18,10 @@ import { Input } from "@/components/ui/input";
 import { formSchema } from "@/lib/form-schema";
 import Navigation from "@/components/navbar";
 import Spinner from "@/components/spinner";
+import { redirect } from "next/navigation";
 
 export default function ProfileForm() {
-  const form = useForm({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: "",
-    },
-  });
-
-  function onSubmit(values) {
-    console.log("Form Submitted:", values);
-  }
-
+  redirect('/home');
   return (
     <>
     <Navigation />

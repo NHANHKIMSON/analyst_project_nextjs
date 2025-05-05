@@ -1,3 +1,4 @@
+import Navigation from "@/components/navbar";
 import { Navbar } from "@/components/navigation";
 
 export default function BookingLayout({ children }) {
@@ -5,7 +6,8 @@ export default function BookingLayout({ children }) {
     <>
       <div>
         <div>
-          <Navbar />
+          {/* <Navbar /> */}
+          <Navigation/>
         </div>
         {/* <div className="bg-red w-full h-4 bg-red-500">scdsad</div> */}
       </div>

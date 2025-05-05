@@ -5,8 +5,6 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Card } from './ui/card';
-import { getAllSlice } from '@/service/app-service/silce-servie';
 export default function Carousel(data){
   const slides = data.data;
   return (

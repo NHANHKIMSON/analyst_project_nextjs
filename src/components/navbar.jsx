@@ -52,12 +52,12 @@ export default function Navigation() {
 
 function NavLinks() {
   const links = [
-    { href: "/booking/home", label: "Home" },
+    { href: "/home", label: "Home" },
     { href: "/dashboard", label: "Dashboard" },
-    { href: "/booking/zone", label: "Zone Layout" },
-    { href: "/booking/home", label: "Services" },
-    { href: "booking/home", label: "Contact" },
-    { href: "/booking/about", label: "About" },
+    { href: "/zone", label: "Zone Layout" },
+    { href: "/home", label: "Services" },
+    { href: "/home", label: "Contact" },
+    { href: "/about", label: "About" },
   ];
 
   return links.map(({ href, label }) => (
