@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Spinner from "./spinner";
+import { usePathname } from "next/navigation";
 
 export default function Navigation() {
   const [loading, setLoading] = useState(true);
@@ -37,7 +38,8 @@ export default function Navigation() {
         </SheetContent>
       </Sheet>
       <Link href="#" className="mr-6 hidden lg:flex" prefetch={false}>
-        <MountainIcon className="h-6 w-6" />
+        {/* <MountainIcon  /> */}
+        <img src="logo.ico" className="h-6" alt="" />
         <span className="sr-only">Acme Inc</span>
       </Link>
       <nav className="ml-auto hidden lg:flex gap-6">
@@ -51,24 +53,30 @@ export default function Navigation() {
 }
 
 function NavLinks() {
+  const path = usePathname();
   const links = [
     { href: "/home", label: "Home" },
     { href: "/dashboard", label: "Dashboard" },
     { href: "/zone", label: "Zone Layout" },
-    { href: "/home", label: "Services" },
-    { href: "/home", label: "Contact" },
+    // { href: "/home", label: "Services" },
+    // { href: "/home", label: "Contact" },
     { href: "/about", label: "About" },
   ];
 
   return links.map(({ href, label }) => (
     <Link
-      key={label}
-      href={href}
-      className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-      prefetch={false}
-    >
-      {label}
-    </Link>
+          key={label}
+          href={href}
+          prefetch={false}
+          className={`group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors 
+          ${
+            path === href
+              ? "bg-gray-200 dark:bg-gray-700 text-black dark:text-white"
+              : "bg-white dark:bg-gray-950 hover:bg-gray-100 dark:hover:bg-gray-800"
+          }`}
+        >
+          {label}
+        </Link>
   ));
 }
 

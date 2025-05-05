@@ -24,7 +24,7 @@ export default function ProfileForm() {
   redirect('/home');
   return (
     <>
-    <Navigation />
+    {/* <Navigation /> */}
     </>
   );
 }
