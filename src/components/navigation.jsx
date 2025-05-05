@@ -22,6 +22,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import Link from "next/link";
+import Image from "next/image";
+import { Notification } from "iconsax-reactjs";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const Navbar = ({
   logo = {
@@ -108,81 +112,119 @@ const Navbar = ({
   },
 }) => {
   return (
-    <section className="py-4">
-      <div className="container">
-        {/* Desktop Menu */}
-        <nav className="hidden justify-between lg:flex">
-          <div className="flex items-center gap-6">
-            {/* Logo */}
-            <a href={logo.url} className="flex items-center gap-2">
-              <img src={logo.src} className="max-h-8" alt={logo.alt} />
-              <span className="text-lg font-semibold tracking-tighter">
-                {logo.title}
-              </span>
-            </a>
-            <div className="flex items-center">
-              <NavigationMenu>
-                <NavigationMenuList>
-                  {menu.map((item) => renderMenuItem(item))}
-                </NavigationMenuList>
-              </NavigationMenu>
-            </div>
+    // <section className="py-4 w-full">
+    //   <div className="container">
+    //     {/* Desktop Menu */}
+    //     <nav className="hidden justify-between lg:flex">
+    //       <div className="flex items-center gap-6">
+    //         {/* Logo */}
+    //         <a href={logo.url} className="flex items-center gap-2">
+    //           <img src={logo.src} className="max-h-8" alt={logo.alt} />
+    //           <span className="text-lg font-semibold tracking-tighter">
+    //             {logo.title}
+    //           </span>
+    //         </a>
+    //         <div className="flex items-center">
+    //           <NavigationMenu>
+    //             <NavigationMenuList>
+    //               {menu.map((item) => renderMenuItem(item))}
+    //             </NavigationMenuList>
+    //           </NavigationMenu>
+    //         </div>
+    //       </div>
+    //       <div className="flex gap-2">
+    //         <Button asChild variant="outline" size="sm">
+    //           <a href={auth.login.url}>{auth.login.title}</a>
+    //         </Button>
+    //         <Button asChild size="sm">
+    //           <a href={auth.signup.url}>{auth.signup.title}</a>
+    //         </Button>
+    //       </div>
+    //     </nav>
+
+    //     {/* Mobile Menu */}
+    //     <div className="block lg:hidden">
+    //       <div className="flex items-center justify-between">
+    //         {/* Logo */}
+    //         <a href={logo.url} className="flex items-center gap-2">
+    //           <img src={logo.src} className="max-h-8" alt={logo.alt} />
+    //         </a>
+    //         <Sheet>
+    //           <SheetTrigger asChild>
+    //             <Button variant="outline" size="icon">
+    //               <Menu className="size-4" />
+    //             </Button>
+    //           </SheetTrigger>
+    //           <SheetContent className="overflow-y-auto">
+    //             <SheetHeader>
+    //               <SheetTitle>
+    //                 <a href={logo.url} className="flex items-center gap-2">
+    //                   <img src={logo.src} className="max-h-8" alt={logo.alt} />
+    //                 </a>
+    //               </SheetTitle>
+    //             </SheetHeader>
+    //             <div className="flex flex-col gap-6 p-4">
+    //               <Accordion
+    //                 type="single"
+    //                 collapsible
+    //                 className="flex w-full flex-col gap-4"
+    //               >
+    //                 {menu.map((item) => renderMobileMenuItem(item))}
+    //               </Accordion>
+
+    //               <div className="flex flex-col gap-3">
+    //                 <Button asChild variant="outline">
+    //                   <a href={auth.login.url}>{auth.login.title}</a>
+    //                 </Button>
+    //                 <Button asChild>
+    //                   <a href={auth.signup.url}>{auth.signup.title}</a>
+    //                 </Button>
+    //               </div>
+    //             </div>
+    //           </SheetContent>
+    //         </Sheet>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </section>
+
+    <header className="border-b shadow-sm">
+      <div className="max-w-7xl mx-auto px-6 py-3">
+        <nav className="relative">
+          {/* Left - Logo */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2">
+            <Link href="/">
+              <Image src="/logo.ico" alt="Korklern Logo" width={120} height={40} />
+            </Link>
           </div>
-          <div className="flex gap-2">
-            <Button asChild variant="outline" size="sm">
-              <a href={auth.login.url}>{auth.login.title}</a>
-            </Button>
-            <Button asChild size="sm">
-              <a href={auth.signup.url}>{auth.signup.title}</a>
-            </Button>
+
+          {/* Center - Nav Links */}
+          <ul className="text-center space-x-6">
+            <Link href="/" className="text-purple-600 font-semibold">
+              Home
+            </Link>
+            <Link href="/events" className="hover:text-purple-600">
+              Event Management
+            </Link>
+            <Link href="/dashboard" className="hover:text-purple-600">
+              Dashboard
+            </Link>
+            <Link href="/about" className="hover:text-purple-600">
+              About
+            </Link>
+          </ul>
+
+          {/* Right - Icons */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center space-x-4">
+            <Notification className="w-5 h-5" />
+            <Avatar>
+              <AvatarImage src="/avatar.jpg" alt="User" />
+              <AvatarFallback>U</AvatarFallback>
+            </Avatar>
           </div>
         </nav>
-
-        {/* Mobile Menu */}
-        <div className="block lg:hidden">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <a href={logo.url} className="flex items-center gap-2">
-              <img src={logo.src} className="max-h-8" alt={logo.alt} />
-            </a>
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="outline" size="icon">
-                  <Menu className="size-4" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent className="overflow-y-auto">
-                <SheetHeader>
-                  <SheetTitle>
-                    <a href={logo.url} className="flex items-center gap-2">
-                      <img src={logo.src} className="max-h-8" alt={logo.alt} />
-                    </a>
-                  </SheetTitle>
-                </SheetHeader>
-                <div className="flex flex-col gap-6 p-4">
-                  <Accordion
-                    type="single"
-                    collapsible
-                    className="flex w-full flex-col gap-4"
-                  >
-                    {menu.map((item) => renderMobileMenuItem(item))}
-                  </Accordion>
-
-                  <div className="flex flex-col gap-3">
-                    <Button asChild variant="outline">
-                      <a href={auth.login.url}>{auth.login.title}</a>
-                    </Button>
-                    <Button asChild>
-                      <a href={auth.signup.url}>{auth.signup.title}</a>
-                    </Button>
-                  </div>
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
-        </div>
       </div>
-    </section>
+    </header>
   );
 };
 
