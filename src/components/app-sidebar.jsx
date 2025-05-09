@@ -32,15 +32,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { IconBrandBooking } from "@tabler/icons-react"
-import { Home } from "iconsax-reactjs"
-import { Calendar } from "iconsax-reactjs"
-import { Ticket } from "iconsax-reactjs"
 
 const data = {
   user: {
-    name: "Marvin McKinney",
-    email: "michelle.rivera@example.com",
+    name: "shadcn",
+    email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
   navMain: [
@@ -137,19 +133,19 @@ const data = {
   ],
   documents: [
     {
-      name: "Overiew",
+      name: "Data Library",
       url: "#",
-      icon: Home,
+      icon: IconDatabase,
     },
     {
-      name: "Waillist",
+      name: "Reports",
       url: "#",
-      icon: Calendar,
+      icon: IconReport,
     },
     {
-      name: "My Events",
+      name: "Word Assistant",
       url: "#",
-      icon: Ticket,
+      icon: IconFileWord,
     },
   ],
 }
@@ -164,15 +160,15 @@ export function AppSidebar({
           <SidebarMenuItem>
             <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
               <a href="#">
-                <IconBrandBooking className="!size-5" />
-                <span className="text-base font-semibold">KorkLern</span>
+                <IconInnerShadowTop className="!size-5" />
+                <span className="text-base font-semibold">Acme Inc.</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        {/* <NavMain items={data.navMain} /> */}
+        <NavMain items={data.navMain} />
         <NavDocuments items={data.documents} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
