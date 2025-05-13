@@ -32,6 +32,13 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { Element4 } from "iconsax-reactjs"
+import { Ticket } from "iconsax-reactjs"
+import { People } from "iconsax-reactjs"
+import { ScanBarcode } from "iconsax-reactjs"
+import { User } from "iconsax-reactjs"
+import { Logout } from "iconsax-reactjs"
+import { usePathname } from "next/navigation"
 
 const data = {
   user: {
@@ -116,65 +123,47 @@ const data = {
   ],
   navSecondary: [
     {
-      title: "Settings",
+      title: "Profile",
       url: "#",
-      icon: IconSettings,
+      icon: User,
     },
     {
-      title: "Get Help",
+      title: "Logout",
       url: "#",
-      icon: IconHelp,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: IconSearch,
+      icon: Logout,
     },
   ],
   documents: [
     {
-      name: "Data Library",
-      url: "#",
-      icon: IconDatabase,
+      name: "Overview",
+      url: "/dashboard",
+      icon: Element4,
     },
     {
-      name: "Reports",
-      url: "#",
-      icon: IconReport,
+      name: "My Events",
+      url: "/my-events",
+      icon: Ticket,
     },
     {
-      name: "Word Assistant",
-      url: "#",
-      icon: IconFileWord,
+      name: "Wiatlist",
+      url: "/waitlist",
+      icon: People,
+    },
+    {
+      name: "Check-in",
+      url: "/waitlist",
+      icon: ScanBarcode,
     },
   ],
 }
 
-export function AppSidebar({
-  ...props
-}) {
+export function AppSidebar({ ...props }) {
   return (
-    <Sidebar collapsible="offcanvas" {...props}>
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
-              <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarHeader>
+    <Sidebar className="pt-12 pb-2 px-4" {...props}>
       <SidebarContent>
-        <NavMain items={data.navMain} />
         <NavDocuments items={data.documents} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
     </Sidebar>
   );
 }

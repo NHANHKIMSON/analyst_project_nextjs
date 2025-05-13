@@ -1,79 +1,91 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
-import { Bar, BarChart, CartesianGrid, Rectangle, XAxis } from "recharts";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  Tooltip,
+  ResponsiveContainer,
+  Rectangle,
+} from "recharts";
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
 
 const chartData = [
-  { browser: "chrome", visitors: 187, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 275, fill: "var(--color-firefox)" },
-];
-
-const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
-  chrome: {
+  {
+    id: "summer",
     label: "Summer Music Festival",
-    color: "hsl(var(--chart-1))",
+    revenue: 120000,
+    fill: "#a855f7",
   },
-  safari: {
+  {
+    id: "tech",
     label: "Tech Conference 2025",
-    color: "hsl(var(--chart-2))",
+    revenue: 90000,
+    fill: "#c084fc",
   },
-  firefox: {
-    label: "Foot  & While Expo",
-    color: "hsl(var(--chart-3))",
+  {
+    id: "expo",
+    label: "Foot & While Expo",
+    revenue: 60000,
+    fill: "#d8b4fe",
   },
-};
+];
 
 export function Barchart() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className={"text-center"}>Top3 Events By Revenues</CardTitle>
+    <Card className="p-6 rounded-2xl shadow-sm">
+      <CardHeader className="pb-4 text-center">
+        <CardTitle className="text-lg font-semibold">Top 3 Events By Revenues</CardTitle>
       </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
-            <CartesianGrid vertical={false} />
+
+      <CardContent className="h-[280px] px-2">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            data={chartData}
+            margin={{ top: 10, right: 10, left: 10, bottom: 50 }}
+            barCategoryGap="30%"
+          >
             <XAxis
-              dataKey="browser"
-              tickLine={false}
-              tickMargin={10}
+              dataKey="label"
               axisLine={false}
-              tickFormatter={(value) => chartConfig[value]?.label}
-            />
-            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-            <Bar
-              dataKey="visitors"
-              strokeWidth={2}
-              radius={8}
-              activeIndex={2}
-              activeBar={(props) => {
-                return (
-                  <Rectangle
-                    {...props}
-                    fillOpacity={0.8}
-                    stroke={props.payload.fill}
-                    strokeDasharray={4}
-                    strokeDashoffset={4}
-                  />
-                );
+              tickLine={false}
+              interval={0}
+              tick={{
+                fontSize: 12,
+                angle: 0,
+                dy: 20,
+                fill: "#4b5563",
+                textAnchor: "middle",
               }}
             />
+            <Tooltip
+              cursor={{ fill: "transparent" }}
+              formatter={(value) => `$${value.toLocaleString()}`}
+              labelFormatter={() => ""}
+              wrapperClassName="text-sm"
+            />
+            <Bar
+              dataKey="revenue"
+              radius={[12, 12, 0, 0]}
+              barSize={60}
+              shape={(props) => (
+                <Rectangle {...props} fill={props.payload.fill} />
+              )}
+            />
           </BarChart>
-        </ChartContainer>
+        </ResponsiveContainer>
       </CardContent>
-      <CardFooter className="flex-col items-center gap-2 text-sm">
-        <div className="flex font-medium leading-none">
-          Event Name
-        </div>
+
+      <CardFooter className="pt-4 justify-center text-xs text-muted-foreground">
+        Revenue (USD)
       </CardFooter>
     </Card>
   );
 }
-

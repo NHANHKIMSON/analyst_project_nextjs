@@ -18,31 +18,31 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 const chartData = [
-  { month: "Summer Music Festival", desktop: 15739 },
-  { month: "Tech Conference 2025", desktop: 30558 },
-  { month: "Foot  & While Expo", desktop: 30567 },
+  { event_name: "Summer Music Festival", revenues: 15739 },
+  { event_name: "Tech Conference 2025", revenues: 30558 },
+  { event_name: "Foot  & While Expo", revenues: 30567 },
 ];
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
+  revenues: {
+    label: "revenues",
     color: "hsl(var(--chart-1))",
   },
 };
 
 export default function RevenueChart() {
   return (
-    <div className="p-64">
+    <div>
       <Card>
-        <CardHeader>
-          <CardTitle>Top3 Events By Revenues</CardTitle>
+        <CardHeader className={"text-center"}>
+          <CardTitle>Top3 By Reventues</CardTitle>
         </CardHeader>
         <CardContent>
           <ChartContainer config={chartConfig}>
             <BarChart accessibilityLayer data={chartData}>
               <CartesianGrid vertical={true} />
               <XAxis
-                dataKey="month"
+                dataKey="event_name"
                 tickLine={false}
                 tickMargin={10}
                 axisLine={false}
@@ -58,7 +58,7 @@ export default function RevenueChart() {
                 cursor={false}
                 content={<ChartTooltipContent hideLabel />}
               />
-              <Bar dataKey="desktop" fill="var(--color-desktop)" radius={8} />
+              <Bar dataKey="revenues" fill="var(--color-revenues)" radius={8} />
             </BarChart>
           </ChartContainer>
         </CardContent>
