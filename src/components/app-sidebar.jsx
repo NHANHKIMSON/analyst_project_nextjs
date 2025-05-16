@@ -154,6 +154,11 @@ const data = {
       url: "/check-in",
       icon: ScanBarcode,
     },
+    {
+      name: "Payments-Info",
+      url: "/payment-info",
+      icon: ScanBarcode,
+    },
   ],
 }
 
