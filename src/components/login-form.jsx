@@ -19,10 +19,10 @@ export function LoginForm({ className, ...props }) {
       password: "",
     },
   });
-
+  console.log("Hello");
   function onSubmit(values) {
     console.log(values);
-    redirect("/dashboard");
+    // redirect("/dashboard");
   }
 
 

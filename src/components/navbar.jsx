@@ -9,7 +9,6 @@ import { usePathname } from "next/navigation";
 
 export default function Navigation() {
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     // Simulate a short loading delay (e.g. for data or animation)
     const timer = setTimeout(() => setLoading(false), 200);

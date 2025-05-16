@@ -26,7 +26,6 @@ items
 }) {
   const { isMobile } = useSidebar();
   const path = usePathname();
-  console.log(path);
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden mt-12">
       <SidebarMenu>

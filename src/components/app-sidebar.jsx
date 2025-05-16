@@ -151,7 +151,7 @@ const data = {
     },
     {
       name: "Check-in",
-      url: "/waitlist",
+      url: "/check-in",
       icon: ScanBarcode,
     },
   ],
@@ -159,11 +159,12 @@ const data = {
 
 export function AppSidebar({ ...props }) {
   return (
-    <Sidebar className="pt-12 pb-2 px-4" {...props}>
+    <>
+    <Sidebar {...props}>
       <SidebarContent>
         <NavDocuments items={data.documents} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
     </Sidebar>
+    </>
   );
 }
