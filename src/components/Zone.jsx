@@ -1,4 +1,3 @@
-
 "use client";
 import * as React from "react";
 import RGL, { WidthProvider } from "react-grid-layout";
@@ -16,7 +15,6 @@ import {
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import { toast } from "@/lib/toas";
-
 
 const ReactGridLayout = WidthProvider(RGL);
 const STORAGE_KEY = "zone_layout";
@@ -105,7 +103,7 @@ export default function ZoneComponent() {
   };
 
   return (
-    <Card className="p-4">
+    <>
       <form className="grid grid-cols-2 gap-4 mb-4">
         <div className="flex flex-col space-y-1.5">
           <Label htmlFor="name">Zone Title</Label>
@@ -132,48 +130,56 @@ export default function ZoneComponent() {
           <Button type="button" onClick={addNewItem}>
             Add Zone
           </Button>
-          <Button type="button" onClick={saveLayoutToStorage} variant="secondary">
+          <Button
+            type="button"
+            onClick={saveLayoutToStorage}
+            variant="secondary"
+          >
             Save Layout
           </Button>
         </div>
       </form>
 
-      <div className="shadow-sm rounded-2xl">
-        <ReactGridLayout
-          className="layout"
-          layout={layout}
-          cols={12}
-          rowHeight={30}
-          width={1200}
-          onLayoutChange={(l) => setLayout(l)}
-          isDraggable
-          isResizable
-          useCSSTransforms
-          draggableCancel=".no-drag"
-        >
-          {layout.map((item) => {
-            const zone = zoneData[item.i] || {};
-            return (
-              <div key={item.i} data-grid={item}>
-                <Card className="h-full w-full box-border relative">
-                  <CardContent className="h-full w-full flex flex-col items-center justify-center p-4 text-center">
-                    <p className="text-lg font-semibold">{zone.title}</p>
-                    <p className="text-sm text-muted-foreground">{zone.type}</p>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="absolute top-1 right-1 no-drag"
-                      onClick={() => deleteItem(item.i)}
-                    >
-                      ✕
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
-            );
-          })}
-        </ReactGridLayout>
-      </div>
-    </Card>
+      <Card className="p-4  border border-dashed my-4 border-primary/100">
+        <div className="shadow-sm rounded-2xl">
+          <ReactGridLayout
+            className="layout"
+            layout={layout}
+            cols={12}
+            rowHeight={30}
+            width={1200}
+            onLayoutChange={(l) => setLayout(l)}
+            isDraggable
+            isResizable
+            useCSSTransforms
+            draggableCancel=".no-drag"
+          >
+            {layout.map((item) => {
+              const zone = zoneData[item.i] || {};
+              return (
+                <div key={item.i} data-grid={item}>
+                  <Card className="h-full w-full box-border relative">
+                    <CardContent className="h-full w-full flex flex-col items-center justify-center p-4 text-center">
+                      <p className="text-lg font-semibold">{zone.title}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {zone.type}
+                      </p>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="absolute top-1 right-1 no-drag"
+                        onClick={() => deleteItem(item.i)}
+                      >
+                        ✕
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </div>
+              );
+            })}
+          </ReactGridLayout>
+        </div>
+      </Card>
+    </>
   );
 }

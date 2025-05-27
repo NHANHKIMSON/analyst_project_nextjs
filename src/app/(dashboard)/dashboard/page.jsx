@@ -1,5 +1,5 @@
 
-import { MostSoldTicketType } from "@/components/pie-chart";
+import { MostSoldTicketType } from "@/components/most-ticket-sold";
 import { LineChartRevenueByMonth } from "@/components/revenues-by-month";
 import { SectionCards } from "@/components/section-cards";
 import RevenueChart from "@/components/ui/revenues-cahrt";
