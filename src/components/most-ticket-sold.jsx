@@ -16,21 +16,17 @@ import {
 } from "@/components/ui/chart";
 
 const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--primary)" },
+  { browser: "chrome", visitors: 27, fill: "var(--primary)" },
   { browser: "safari", visitors: 200, fill: "var(--primary-300)" },
   { browser: "firefox", visitors: 187, fill: "var(--primary-200)" },
   { browser: "edge", visitors: 173, fill: "var(--primary-100)" },
 ];
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
-    ticket: 2235,
-  },
   chrome: {
     label: "Chrome",
     color: "hsl(var(--chart-1))",
-    ticket: 2235,
+    ticket: 27,
   },
   safari: {
     label: "Safari",

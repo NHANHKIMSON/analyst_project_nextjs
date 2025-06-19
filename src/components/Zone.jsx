@@ -32,49 +32,93 @@ export default function ZoneComponent() {
   const [locationLink, setLocationLink] = React.useState("");
 
   // Load layout from localStorage on mount
+  // React.useEffect(() => {
+  //   const saved = localStorage.getItem(STORAGE_KEY);
+  //   if (saved) {
+  //     const parsed = JSON.parse(saved);
+  //     const loadedLayout = parsed.map((item) => ({
+  //       x: item.layout.x,
+  //       y: item.layout.y,
+  //       w: item.layout.w,
+  //       h: item.layout.h,
+  //       i: item.id,
+  //     }));
+  //     const loadedZoneData = {};
+  //     parsed.forEach((item) => {
+  //       loadedZoneData[item.id] = {
+  //         title: item.title,
+  //         type: item.type,
+  //         color: item.color,
+  //       };
+  //     });
+  //     setLayout(loadedLayout);
+  //     setZoneData(loadedZoneData);
+  //     // Set idCounter to the highest existing id
+  //     const maxId = Math.max(...parsed.map((z) => parseInt(z.id, 10)));
+  //     idCounter = maxId;
+  //   }
+  // }, []);
+  
   React.useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
-      const loadedLayout = parsed.map((item) => ({
+  
+      // Extract metadata
+      const locationName = parsed.venueName || "";
+      const locationLink = parsed.venueLocation || "";
+  
+      // Extract zone layout and data
+      const data = parsed.venueInfo?.data || [];
+  
+      const loadedLayout = data.map((item) => ({
         x: item.layout.x,
         y: item.layout.y,
         w: item.layout.w,
         h: item.layout.h,
         i: item.id,
       }));
+  
       const loadedZoneData = {};
-      parsed.forEach((item) => {
+      data.forEach((item) => {
         loadedZoneData[item.id] = {
           title: item.title,
           type: item.type,
-          color: item.color,
+          color: item.color || "", // optional: color might not exist in new structure
         };
       });
+  
       setLayout(loadedLayout);
       setZoneData(loadedZoneData);
-      // Set idCounter to the highest existing id
-      const maxId = Math.max(...parsed.map((z) => parseInt(z.id, 10)));
+      setLocationName(locationName); // Make sure you have this state defined
+      setLocationLink(locationLink); // Make sure you have this state defined
+  
+      // Set idCounter to highest existing ID
+      const maxId = Math.max(...data.map((z) => parseInt(z.id, 10)));
       idCounter = maxId;
     }
   }, []);
 
   const saveLayoutToStorage = () => {
-    const fullData = layout.map((item) => ({
-      id: item.i,
-      layout: {
-        x: item.x,
-        y: item.y,
-        w: item.w,
-        h: item.h,
+    const venueData = {
+      // venueId: "0b561265-e0e5-4421",
+      venueName: locationName,
+      venueLocation: locationLink,
+      venueInfo: {
+        data: layout.map((item) => ({
+          id: item.i,
+          type: zoneData[item.i]?.type || "",
+          title: zoneData[item.i]?.title || "",
+          layout: {
+            x: item.x,
+            y: item.y,
+            w: item.w,
+            h: item.h,
+          },
+        })),
       },
-      title: zoneData[item.i]?.title || "",
-      type: zoneData[item.i]?.type || "",
-      color: zoneData[item.i]?.color || "",
-      locationName: locationName || "",
-      locationLink: locationLink || "",
-    }));
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(fullData));
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(venueData));
     toast.success("Layout saved");
   };
 
